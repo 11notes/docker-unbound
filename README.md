@@ -30,13 +30,10 @@ If you value security, simplicity and optimizations to the extreme, then this im
 # COMPARISON 🏁
 Below you find a comparison between this image and the most used or original one.
 
-| **image** | 11notes/unbound:1.23.1 | klutchell/unbound |
-| ---: | :---: | :---: |
-| **image size on disk** | 6.56MB | 14.5MB |
-| **process UID/GID** | 1000/1000 | ?/? |
-| **distroless?** | ✅ | ❌ |
-| **rootless?** | ✅ | ❌ |
-
+| **image** | **size on disk** | **init default as** | **[distroless](https://github.com/11notes/RTFM/blob/main/linux/container/image/distroless.md)** | supported architectures
+| ---: | ---: | :---: | :---: | :---: |
+| 11notes/unbound:1.23.1 | 6MB | 1000:1000 | ✅ | amd64, arm64 |
+| klutchell/unbound | 14MB | 1000:1000 | ✅ | amd64, armv7, armv6, arm64 |
 
 # VOLUMES 📁
 * **/unbound/etc** - Directory of your configuration
@@ -185,4 +182,4 @@ docker pull quay.io/11notes/unbound:1.23.1
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-unbound/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-unbound/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-unbound/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 11.08.2025, 14:34:03 (CET)*
+*created 20.08.2025, 01:58:31 (CET)*
