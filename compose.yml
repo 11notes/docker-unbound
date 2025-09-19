@@ -28,7 +28,7 @@ services:
       redis:
         condition: "service_healthy"
         restart: true
-    image: "11notes/unbound:1.23.1"
+    image: "11notes/unbound:1.24.0"
     <<: *lockdown
     environment:
       TZ: "Europe/Zurich"
