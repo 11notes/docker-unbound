@@ -3,7 +3,7 @@
   "name": "unbound",
   "root": "/unbound",
   "semver": {
-    "version": "1.24.1"
+    "version": "1.24.2"
   },
   "readme": {
     "description": "Run unbound rootless, distroless and secure by default!",
