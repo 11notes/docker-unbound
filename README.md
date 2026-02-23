@@ -148,6 +148,8 @@ To find out how you can change the default UID/GID of this container image, cons
 These are the main tags for the image. There is also a tag for each commit and its shorthand sha256 value.
 
 * [1.24.2](https://hub.docker.com/r/11notes/unbound/tags?name=1.24.2)
+* [1.24.2-unraid](https://hub.docker.com/r/11notes/unbound/tags?name=1.24.2-unraid)
+* [1.24.2-nobody](https://hub.docker.com/r/11notes/unbound/tags?name=1.24.2-nobody)
 
 ### There is no latest tag, what am I supposed to do about updates?
 It is my opinion that the ```:latest``` tag is a bad habbit and should not be used at all. Many developers introduce **breaking changes** in new releases. This would messed up everything for people who use ```:latest```. If you don’t want to change the tag to the latest [semver](https://semver.org/), simply use the short versions of [semver](https://semver.org/). Instead of using ```:1.24.2``` you can use ```:1``` or ```:1.24```. Since on each new version these tags are updated to the latest version of the software, using them is identical to using ```:latest``` but at least fixed to a major or minor version. Which in theory should not introduce breaking changes.
@@ -160,6 +162,12 @@ docker pull 11notes/unbound:1.24.2
 docker pull ghcr.io/11notes/unbound:1.24.2
 docker pull quay.io/11notes/unbound:1.24.2
 ```
+
+# UNRAID VERSION 🟠
+This image supports unraid by default. Simply add **-unraid** to any tag and the image will run as 99:100 instead of 1000:1000.
+
+# NOBODY VERSION 👻
+This image supports nobody by default. Simply add **-nobody** to any tag and the image will run as 65534:65534 instead of 1000:1000.
 
 # SOURCE 💾
 * [11notes/unbound](https://github.com/11notes/docker-unbound)
@@ -182,4 +190,4 @@ docker pull quay.io/11notes/unbound:1.24.2
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-unbound/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-unbound/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-unbound/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 27.11.2025, 06:18:19 (CET)*
+*created 24.02.2026, 00:43:00 (CET)*
