@@ -24,6 +24,8 @@
   FROM alpine AS openssl
   COPY --from=util-bin / /
   ARG APP_OPENSSL_VERSION \
+      TARGETARCH \
+      TARGETVARIANT \
       BUILD_DEPENDENCY_OPENSSL_TAR \
       BUILD_DEPENDENCY_OPENSSL_ROOT
 
@@ -45,7 +47,13 @@
 
   RUN set -ex; \
     cd ${BUILD_DEPENDENCY_OPENSSL_ROOT}; \
-    ./Configure \
+    ARCHEXT=""; \
+    case "${TARGETARCH}${TARGETVARIANT}" in \
+      "armv7") \
+        ARCHEXT=linux-generic32; \
+      ;; \
+    esac; \
+    ./Configure ${ARCHEXT} \
       no-weak-ssl-ciphers \
       no-apps \
       no-docs \
