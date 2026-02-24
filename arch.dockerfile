@@ -49,11 +49,14 @@
     cd ${BUILD_DEPENDENCY_OPENSSL_ROOT}; \
     ARCHEXT=""; \
     case "${TARGETARCH}${TARGETVARIANT}" in \
+      "amd64"|"arm64") \
+        ARCHEXT=enable-ec_nistp_64_gcc_128; \
+      ;; \
       "armv7") \
         ARCHEXT=linux-generic32; \
       ;; \
     esac; \
-    ./Configure ${ARCHEXT} \
+    ./Configure \
       no-weak-ssl-ciphers \
       no-apps \
       no-docs \
@@ -64,14 +67,14 @@
       enable-tfo \
       enable-quic \
       enable-ktls \
-      enable-ec_nistp_64_gcc_128 \
       -fPIC \
       -DOPENSSL_NO_HEARTBEATS \
       -fstack-protector-strong \
       -fstack-clash-protection \
       --prefix=/usr/local/openssl \
       --openssldir=/usr/local/openssl \
-      --libdir=/usr/local/openssl/lib; \
+      --libdir=/usr/local/openssl/lib \
+      ${ARCHEXT}; \
     make -s -j $(nproc) 2>&1 > /dev/null; \
     make -s -j $(nproc) install_sw 2>&1 > /dev/null;
 
