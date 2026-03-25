@@ -6,7 +6,7 @@
     "version": "1.24.2"
   },
   "readme": {
-    "description": "Run unbound rootless, distroless and secure by default!",
+    "description": "Run unbound rootless and distroless.",
     "introduction": "Unbound is a validating, recursive, caching DNS resolver. It is designed to be fast and lean and incorporates modern features based on open standards.",
     "built": {
       "unbound": "https://github.com/NLnetLabs/unbound"
