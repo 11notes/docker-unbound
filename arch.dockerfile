@@ -142,6 +142,21 @@
     eleven distroless ${BUILD_BIN};
 
 
+# :: ROOT HINTS
+  FROM alpine AS root-hints
+  ARG APP_ROOT
+
+  RUN set -ex; \
+    apk --update --no-cache add \
+      curl;
+
+  RUN set -ex; \
+    mkdir -p /distroless${APP_ROOT}/etc;
+
+  RUN set -ex; \
+    curl --output /distroless${APP_ROOT}/etc/root.hints https://www.internic.net/domain/named.cache;
+
+
 # ╔═════════════════════════════════════════════════════╗
 # ║                       IMAGE                         ║
 # ╚═════════════════════════════════════════════════════╝
@@ -171,6 +186,7 @@
     COPY --from=distroless / /
     COPY --from=distroless-dnslookup / /
     COPY --from=build /distroless/ /
+    COPY --from=root-hints /distroless/ /
     COPY --chown=${APP_UID}:${APP_GID} ./rootfs /
 
 # :: Volumes
