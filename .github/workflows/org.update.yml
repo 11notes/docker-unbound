@@ -182,7 +182,7 @@ jobs:
       - name: update / build container image
         id: build
         if: env.WORKFLOW_UPDATE == 'true' && steps.checkout.outcome == 'success'
-        uses: the-actions-org/workflow-dispatch@3133c5d135c7dbe4be4f9793872b6ef331b53bc7
+        uses: the-actions-org/workflow-dispatch@3133c5d135c7dbe4be4f9793872b6ef331b53bc7 # v4.0.0
         with:
           workflow: docker.yml
           wait-for-completion: true
@@ -192,7 +192,7 @@ jobs:
 
       - name: update / build container image for unraid
         if: env.WORKFLOW_UPDATE_UNRAID == 'true' && steps.build.outputs.workflow-conclusion == 'success'
-        uses: the-actions-org/workflow-dispatch@3133c5d135c7dbe4be4f9793872b6ef331b53bc7
+        uses: the-actions-org/workflow-dispatch@3133c5d135c7dbe4be4f9793872b6ef331b53bc7 # v4.0.0
         with:
           workflow: docker.yml
           wait-for-completion: false
@@ -202,7 +202,7 @@ jobs:
 
       - name: update / build container image for nobody
         if: env.WORKFLOW_UPDATE_NOBODY == 'true' && steps.build.outputs.workflow-conclusion == 'success'
-        uses: the-actions-org/workflow-dispatch@3133c5d135c7dbe4be4f9793872b6ef331b53bc7
+        uses: the-actions-org/workflow-dispatch@3133c5d135c7dbe4be4f9793872b6ef331b53bc7 # v4.0.0
         with:
           workflow: docker.yml
           wait-for-completion: false
