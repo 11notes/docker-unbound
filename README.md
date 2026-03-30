@@ -35,6 +35,65 @@ Below you find a comparison between this image and the most used or original one
 | 11notes/unbound | 10MB | 1000:1000 | ✅ | amd64, arm64, armv7 |
 | klutchell/unbound | 14MB | 1000:1000 | ✅ | amd64, arm64, armv6, armv7 |
 
+# DEFAULT CONFIG 📑
+```yaml
+server:
+    directory: "/unbound/etc"
+    root-hints: "/unbound/etc/root.hints"
+    statistics-interval: 60
+    verbosity: 1
+    use-syslog: no
+    interface: 0.0.0.0
+    interface: ::
+
+    do-ip6: yes
+    do-ip4: yes
+    port: 53
+    do-udp: yes
+    do-tcp: yes
+
+    access-control: 10.0.0.0/8 allow
+    access-control: 127.0.0.0/8 allow
+    access-control: 172.16.0.0/12 allow
+    access-control: 192.168.0.0/16 allow
+    access-control: 169.254.0.0/16 allow
+
+    hide-identity: yes
+    hide-version: yes
+    harden-glue: yes
+    harden-dnssec-stripped: yes
+    use-caps-for-id: yes
+    prefetch: yes
+    serve-expired: yes
+    qname-minimisation: yes
+    msg-cache-slabs: 8
+    rrset-cache-slabs: 8
+    infra-cache-slabs: 8
+    key-cache-slabs: 8
+    rrset-cache-size: 256m
+    msg-cache-size: 128m
+    so-rcvbuf: 1m
+    unwanted-reply-threshold: 10000
+    val-clean-additional: yes
+
+    module-config: "cachedb iterator"
+
+cachedb:
+    backend: redis
+    redis-server-host: redis
+    redis-server-password: unbound
+    redis-expire-records: no
+    cachedb-check-when-serve-expired: yes
+```
+
+The default config gets you started easily and is meant if you use unbound as a local resolver, meaning your unbound will not send DNS queries to 3rd party resolvers like Google or Quad9. If you want to send your queries to these resolvers via DoH/DoT make sure you add the following to your configuration:
+
+```yaml
+server:
+  tls-upstream: yes
+  tls-cert-bundle: /etc/ssl/certs/ca-certificates.crt
+```
+
 # VOLUMES 📁
 * **/unbound/etc** - Directory of your configuration
 
@@ -193,4 +252,4 @@ This image supports nobody by default. Simply add **-nobody** to any tag and the
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-unbound/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-unbound/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-unbound/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 26.03.2026, 07:06:11 (CET)*
+*created 30.03.2026, 20:15:11 (CET)*
