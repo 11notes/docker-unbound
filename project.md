@@ -11,6 +11,7 @@ ${{ github:> }}* ... this image runs read-only
 ${{ github:> }}* ... this image is automatically scanned for CVEs before and after publishing
 ${{ github:> }}* ... this image is created via a secure and pinned CI/CD process
 ${{ github:> }}* ... this image is very small
+${{ github:> }}* ... this image supports [inline configs](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)
 
 If you value security, simplicity and optimizations to the extreme, then this image might be for you.
 
@@ -37,6 +38,7 @@ ${{ content_compose }}
 ${{ content_defaults }}
 
 ${{ content_environment }}
+| `UNBOUND_CONFIG` *(optional)* | Will overwrite the default config with the value of this variable if set ([inline config](https://github.com/11notes/RTFM/blob/master/linux/container/image/11notes/inline-config.md)) | |
 
 ${{ content_source }}
 

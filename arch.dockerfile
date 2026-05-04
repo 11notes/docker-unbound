@@ -4,11 +4,13 @@
   # GLOBAL
   ARG APP_UID=1000 \
       APP_GID=1000 \
-      BUILD_ROOT=/unbound \
-      BUILD_SRC=https://github.com/NLnetLabs/unbound.git \
       APP_VERSION=0 \
+      APP_GO_VERSION=0 \
       APP_OPENSSL_LTS_VERSION=0
-  ARG BUILD_BIN=${BUILD_ROOT}/unbound \
+
+  ARG BUILD_ROOT=/unbound \
+      BUILD_SRC=https://github.com/NLnetLabs/unbound.git \
+      BUILD_BIN=/unbound/unbound \
       BUILD_DEPENDENCY_OPENSSL_TAR=openssl-${APP_OPENSSL_LTS_VERSION}.tar.gz \
       BUILD_DEPENDENCY_OPENSSL_ROOT=/openssl-${APP_OPENSSL_LTS_VERSION}
 
@@ -20,6 +22,17 @@
 # ╔═════════════════════════════════════════════════════╗
 # ║                       BUILD                         ║
 # ╚═════════════════════════════════════════════════════╝
+# :: ENTRYPOINT
+  FROM 11notes/go:${APP_GO_VERSION} AS entrypoint
+  ARG APP_GO_VERSION
+  COPY ./build/entrypoint /go/entrypoint
+  RUN set -ex; \
+    cd /go/entrypoint; \
+    go mod edit -go=${APP_GO_VERSION}; \
+    eleven go build /entrypoint main.go; \
+    eleven distroless /entrypoint;
+
+
 # :: OPENSSL
   FROM alpine AS openssl
   COPY --from=util-bin / /
@@ -185,6 +198,7 @@
   # :: multi-stage
     COPY --from=distroless / /
     COPY --from=distroless-dnslookup / /
+    COPY --from=entrypoint /distroless/ /
     COPY --from=build /distroless/ /
     COPY --from=root-hints /distroless/ /
     COPY --chown=${APP_UID}:${APP_GID} ./rootfs /
@@ -198,5 +212,4 @@
 
 # :: EXECUTE
   USER ${APP_UID}:${APP_GID}
-  ENTRYPOINT ["/usr/local/bin/unbound"]
-  CMD ["-p", "-d", "-c", "/unbound/etc/default.conf"]
+  ENTRYPOINT ["/usr/local/bin/entrypoint"]
