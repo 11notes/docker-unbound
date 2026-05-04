@@ -1,8 +1,6 @@
 package main
 
 import (
-	"os"
-
   "github.com/11notes/go-eleven"
 )
 
