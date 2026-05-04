@@ -7,10 +7,10 @@
       BUILD_ROOT=/unbound \
       BUILD_SRC=https://github.com/NLnetLabs/unbound.git \
       APP_VERSION=0 \
-      APP_OPENSSL_VERSION=0
+      APP_OPENSSL_LTS_VERSION=0
   ARG BUILD_BIN=${BUILD_ROOT}/unbound \
-      BUILD_DEPENDENCY_OPENSSL_TAR=openssl-${APP_OPENSSL_VERSION}.tar.gz \
-      BUILD_DEPENDENCY_OPENSSL_ROOT=/openssl-${APP_OPENSSL_VERSION}
+      BUILD_DEPENDENCY_OPENSSL_TAR=openssl-${APP_OPENSSL_LTS_VERSION}.tar.gz \
+      BUILD_DEPENDENCY_OPENSSL_ROOT=/openssl-${APP_OPENSSL_LTS_VERSION}
 
   # :: FOREIGN IMAGES
   FROM 11notes/distroless AS distroless
@@ -23,7 +23,7 @@
 # :: OPENSSL
   FROM alpine AS openssl
   COPY --from=util-bin / /
-  ARG APP_OPENSSL_VERSION \
+  ARG APP_OPENSSL_LTS_VERSION \
       TARGETARCH \
       TARGETVARIANT \
       BUILD_DEPENDENCY_OPENSSL_TAR \
@@ -43,7 +43,7 @@
       tar;
 
   RUN set -ex; \
-    eleven github asset openssl/openssl openssl-${APP_OPENSSL_VERSION} ${BUILD_DEPENDENCY_OPENSSL_TAR};
+    eleven github asset openssl/openssl openssl-${APP_OPENSSL_LTS_VERSION} ${BUILD_DEPENDENCY_OPENSSL_TAR};
 
   RUN set -ex; \
     cd ${BUILD_DEPENDENCY_OPENSSL_ROOT}; \
