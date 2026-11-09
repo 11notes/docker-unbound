@@ -16,9 +16,6 @@
         "11notes/distroless",
         "11notes/distroless:dnslookup"
       ]
-    },
-    "comparison": {
-      "image": "klutchell/unbound"
     }
   }
 }

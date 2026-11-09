@@ -1,13 +1,14 @@
 # ╔═════════════════════════════════════════════════════╗
 # ║                       SETUP                         ║
 # ╚═════════════════════════════════════════════════════╝
-  # GLOBAL
+# GLOBAL
   ARG APP_UID=1000 \
       APP_GID=1000 \
       APP_VERSION=0 \
       APP_GO_VERSION=0 \
       APP_OPENSSL_LTS_VERSION=0
 
+# APP
   ARG BUILD_ROOT=/unbound \
       BUILD_SRC=https://github.com/NLnetLabs/unbound.git \
       BUILD_BIN=/unbound/unbound \
