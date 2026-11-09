@@ -135,9 +135,7 @@
       --with-ssl=/usr/local/openssl \
       --without-pythonmodule \
       --without-pyunbound \
-      --enable-ipset \
       --enable-fully-static \
-      --enable-event-api \
       --enable-tfo-client \
       --enable-tfo-server \
       --enable-dnscrypt \
