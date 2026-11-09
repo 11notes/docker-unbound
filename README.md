@@ -33,7 +33,6 @@ Below you find a comparison between this image and the most used or original one
 
 | **image** | **size on disk** | **init default as** | **[distroless](https://github.com/11notes/RTFM/blob/main/linux/container/image/distroless.md)** | supported architectures
 | ---: | ---: | :---: | :---: | :---: |
-| klutchell/unbound | 22MB | 1000:1000 | ✅ | amd64, arm64, armv6, armv7 |
 | 11notes/unbound | 33MB | 1000:1000 | ✅ | amd64, arm64, armv7 |
 
 # DEFAULT CONFIG 📑
@@ -246,4 +245,4 @@ docker pull quay.io/11notes/unbound:1.26.2
 # ElevenNotes™️
 This image is provided to you at your own risk. Always make backups before updating an image to a different version. Check the [releases](https://github.com/11notes/docker-unbound/releases) for breaking changes. If you have any problems with using this image simply raise an [issue](https://github.com/11notes/docker-unbound/issues), thanks. If you have a question or inputs please create a new [discussion](https://github.com/11notes/docker-unbound/discussions) instead of an issue. You can find all my other repositories on [github](https://github.com/11notes?tab=repositories).
 
-*created 09.11.2026, 12:02:23 (CET)*
+*created 09.11.2026, 14:57:06 (CET)*
